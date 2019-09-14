@@ -37,6 +37,6 @@
 *.vcxproj.*
 *.suo
 *.sdf
-#*.opensdf
+*.opensdf
 #*.dir/
 #*.ipch
