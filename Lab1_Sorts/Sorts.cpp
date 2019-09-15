@@ -1,7 +1,9 @@
-#include <stdio.h>
+#include <iostream>
 #include "Sorts.h"
 
-float* mergeSort(float* p_left, float* p_right, /*float* p_right,*/ int left, int right) {
+using namespace std;
+/*
+float* mergeSort(float* p_left, float* p_right, float* p_right, int left, int right) {
 	int middle, buff;
 	float *merged, *l_part, *r_part;
 
@@ -24,4 +26,25 @@ float* mergeSort(float* p_left, float* p_right, /*float* p_right,*/ int left, in
 			}
 		}
 	}
+}
+*/
+
+void selectionSort(float **arrays, int numArr, int lengthArr) {
+	float temp;
+	for (int i = 0; i < lengthArr; i++) {
+		for (int j = i + 1; j < lengthArr; j++) {
+			if (arrays[numArr][i] > arrays[numArr][j]) {
+				temp = arrays[numArr][i];
+				arrays[numArr][i] = arrays[numArr][j];
+				arrays[numArr][j] = temp;
+			}
+		}
+	}
+
+	// print sorted array
+	/*
+	for (int i = 0; i < lengthArr; i++) {
+		cout << arrays[numArr][i] << endl;
+	}
+	*/
 }

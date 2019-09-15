@@ -6,6 +6,9 @@
 #include "Functions.h"
 
 /*
+	             _____________________________
+	------------|---------DESCRIPTION---------|------------
+	            |_____________________________|
 	Randomize all arrays: [0f..100f]
 	10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000
 
@@ -22,16 +25,17 @@
 
 using namespace std;
 
-int(*menu(void)) (float **arrays) {
+int(*menu(void)) (float **arrays, const int* lengthArr) {
 	int choice;
-	int(*menu_items[])(float **arrays) = { runSelection, runBucket, runMerge, runQuick, runTim };
+	int(*menu_items[])(float **arrays, const int* lengthArr) = { runSelection, runBucket, runMerge, runQuick, runTim };
 
 	cout << "Welcome to Sort Analysis." << endl << endl;
 	cout << "1. Selection sort." << endl;
 	cout << "2. Bucket Sort." << endl;
 	cout << "3. Merge Sort." << endl;
 	cout << "4. QuickSort." << endl;
-	cout << "5. Tim Sort." << endl << endl;
+	cout << "5. Tim Sort." << endl;
+	cout << "(*)Another number to exit." << endl << endl;
 	cout << "Choose a Sort: ";
 	cin >> choice;
 	if ((choice > 0) && (choice < 5)) {
@@ -45,6 +49,7 @@ int(*menu(void)) (float **arrays) {
 
 int main() {
 	float arr10[10], arr50[50], arr100[100], arr500[500], arr1k[1000], arr5k[5000], arr10k[10000], arr50k[50000], arr100k[100000];
+	const int lengthArr[9] = { 10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000 };
 
 	srand(time(0));
 	cout.precision(3);
@@ -56,7 +61,7 @@ int main() {
 		cout << fixed << arr100k[i] << endl;
 	}
 	*/
-	
+			
 	// pointer on array of pointers on arrays
 	float *arrays[9];
 	arrays[0] = arr10;
@@ -74,7 +79,7 @@ int main() {
 	}
 	*/
 
-	int(*fn)(float **arrays);
+	int(*fn)(float **arrays, const int* lengthArr);
 
 	while (1) {
 		fn = menu();
@@ -82,7 +87,7 @@ int main() {
 			cout << "There is nothing.\n" << endl;
 			return 0;
 		}
-		int t = fn(arrays/*, arr50, arr100, arr500, arr1k, arr5k, arr10k, arr50k, arr100k*/);	//Run the function
-		cout << "Ended: " << t << endl;
+		int t = fn(arrays, lengthArr);	//Run the function
+		//cout << "Ended: " << t << endl << endl;
 	}
 }
