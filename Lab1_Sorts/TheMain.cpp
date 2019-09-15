@@ -22,9 +22,9 @@
 
 using namespace std;
 
-int(*menu(void)) (float arr10[], float arr50[], float arr100[], float arr500[], float arr1k[], float arr5k[], float arr10k[], float arr50k[], float arr100k[]) {
+int(*menu(void)) (float **arrays) {
 	int choice;
-	int(*menu_items[])(float arr10[], float arr50[], float arr100[], float arr500[], float arr1k[], float arr5k[], float arr10k[], float arr50k[], float arr100k[]) = { runSelection, runBucket, runMerge, runQuick, runTim };
+	int(*menu_items[])(float **arrays) = { runSelection, runBucket, runMerge, runQuick, runTim };
 
 	cout << "Welcome to Sort Analysis." << endl << endl;
 	cout << "1. Selection sort." << endl;
@@ -48,20 +48,33 @@ int main() {
 
 	srand(time(0));
 	cout.precision(3);
+	cout << fixed;
 	
 	randomizeArrays(arr10, arr50, arr100, arr500, arr1k, arr5k, arr10k, arr50k, arr100k);
 	/*
 	for (int i = 0; i < 10; i++) {
 		cout << fixed << arr100k[i] << endl;
 	}
-	cout << endl;
-	for (int i = 0; i < 10; i++) {
-		cout << fixed << arr10[i] << endl;
-	}
 	*/
 	
+	// pointer on array of pointers on arrays
+	float *arrays[9];
+	arrays[0] = arr10;
+	arrays[1] = arr50;
+	arrays[2] = arr100;
+	arrays[3] = arr500;
+	arrays[4] = arr1k;
+	arrays[5] = arr5k;
+	arrays[6] = arr10k;
+	arrays[7] = arr50k;
+	arrays[8] = arr100k;
+	/*
+	for (int i = 0; i < 10; i++) {
+		cout << fixed << arrays[8][i] << endl;
+	}
+	*/
 
-	int(*fn)(float arr10[], float arr50[], float arr100[], float arr500[], float arr1k[], float arr5k[], float arr10k[], float arr50k[], float arr100k[]);
+	int(*fn)(float **arrays);
 
 	while (1) {
 		fn = menu();
@@ -69,7 +82,7 @@ int main() {
 			cout << "There is nothing.\n" << endl;
 			return 0;
 		}
-		int t = fn(arr10, arr50, arr100, arr500, arr1k, arr5k, arr10k, arr50k, arr100k);	//Run the function
+		int t = fn(arrays/*, arr50, arr100, arr500, arr1k, arr5k, arr10k, arr50k, arr100k*/);	//Run the function
 		cout << "Ended: " << t << endl;
 	}
 }

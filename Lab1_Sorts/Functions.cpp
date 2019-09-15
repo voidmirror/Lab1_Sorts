@@ -36,7 +36,7 @@ void randomizeArrays(float arr10[], float arr50[], float arr100[], float arr500[
 	}
 }
 
-int runSelection(float arr10[], float arr50[], float arr100[], float arr500[], float arr1k[], float arr5k[], float arr10k[], float arr50k[], float arr100k[]) {
+int runSelection(float **arrays) {
 	int _startTime, _endTime, durationTime;
 	ofstream fout("reports/selectionReport.txt");
 
@@ -46,31 +46,33 @@ int runSelection(float arr10[], float arr50[], float arr100[], float arr500[], f
 	fout << "hi again and again, but not now\n";
 	fout.close();
 
+	
+
 	//end of function-----------------------------------------------------------------
 	cout << "All results are saved in txt-file \"selectionReport\"" << endl;
 	return 1;
 }
 
-int runBucket(float arr10[], float arr50[], float arr100[], float arr500[], float arr1k[], float arr5k[], float arr10k[], float arr50k[], float arr100k[]) {
+int runBucket(float **arrays) {
 
 
 	return 2;
 }
 
-int runMerge(float arr10[], float arr50[], float arr100[], float arr500[], float arr1k[], float arr5k[], float arr10k[], float arr50k[], float arr100k[]) {
+int runMerge(float **arrays) {
 
 
-	return 2;
+	return 3;
 }
 
-int runQuick(float arr10[], float arr50[], float arr100[], float arr500[], float arr1k[], float arr5k[], float arr10k[], float arr50k[], float arr100k[]) {
+int runQuick(float **arrays) {
 
 
-	return 2;
+	return 4;
 }
 
-int runTim(float arr10[], float arr50[], float arr100[], float arr500[], float arr1k[], float arr5k[], float arr10k[], float arr50k[], float arr100k[]) {
+int runTim(float **arrays) {
 
 
-	return 2;
+	return 5;
 }
