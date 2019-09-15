@@ -40,3 +40,6 @@
 *.opensdf
 #*.dir/
 #*.ipch
+
+# Reports
+*Report.txt
