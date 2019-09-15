@@ -7,5 +7,6 @@ int runBucket(float **arrays, const int *lengthArr);
 int runMerge(float **arrays, const int *lengthArr);
 int runQuick(float **arrays, const int *lengthArr);
 int runTim(float **arrays, const int *lengthArr);
+void selectArray();
 
 #endif

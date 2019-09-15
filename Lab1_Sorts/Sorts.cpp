@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "Sorts.h"
 
 using namespace std;
@@ -47,4 +48,19 @@ void selectionSort(float **arrays, int numArr, int lengthArr) {
 		cout << arrays[numArr][i] << endl;
 	}
 	*/
+}
+
+float* bucketSort(float array[], int lengthArr) {
+	/*
+		array --> will be sorted (copy)
+	*/
+	/*if ((sizeof(array) / sizeof(float) < 2) || (minElement == maxElement)) {
+		return array;
+	}
+	int range = maxElement - minElement;
+	for (int i = 0; i < (sizeof(array) / sizeof(float)-1); i++) {
+		int index = static_cast <const int>(array[i] * numBuckets / range);
+		minBuckets[index] =
+	}*/
+	
 }
