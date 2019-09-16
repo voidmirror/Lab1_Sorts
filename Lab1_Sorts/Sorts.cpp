@@ -85,7 +85,7 @@ void bucketSort(float **arrays, int numArr ,int lengthArr, int maxElement/*, int
 	
 	int bucketLength = lengthArr + 1;
 	int bucketNum = rand() % maxElement + 101 + lengthArr;
-	int divider = ceil((double)((maxElement + 1) / bucketNum));
+	int divider = ceil(float((maxElement + 1)) / float(bucketNum));
 	int currentBucketIndex;
 	float **bucketArr;
 	//float *bucketArr = (float*)malloc(bucketLength * bucketNum * sizeof(float));
@@ -104,10 +104,12 @@ void bucketSort(float **arrays, int numArr ,int lengthArr, int maxElement/*, int
 		bucketArr[currentBucketIndex][(int)bucketArr[currentBucketIndex][0]] = arrays[numArr][i];
 	}
 	for (int i = 0; i < bucketNum; i++) {
-		selectionSort(bucketArr, i, bucketArr[i][0]);
+		//selectionSort(bucketArr, i, bucketArr[i][0]);
+
+		
 	}
 
-	// reconstraction of source array
+	// reconstruction of source array
 	currentBucketIndex = 0;
 	int currentBucketReverseIndex = 0;
 	for (int i = 0; i < lengthArr; i++) {
