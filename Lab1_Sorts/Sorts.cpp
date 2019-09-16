@@ -50,17 +50,81 @@ void selectionSort(float **arrays, int numArr, int lengthArr) {
 	*/
 }
 
-float* bucketSort(float array[], int lengthArr) {
+void bucketSort(float **arrays, int numArr ,int lengthArr, int maxElement/*, int minElement*/) {
 	/*
-		array --> will be sorted (copy)
+		bucketArr[i][0] - counter
 	*/
-	/*if ((sizeof(array) / sizeof(float) < 2) || (minElement == maxElement)) {
-		return array;
+		
+	/*
+	int bucketsNum;
+	int string, column, string2, column2;
+	int **matr;
+
+	//Creating
+	matr = (int**)malloc(string * sizeof(int*));
+	for (int i = 0; i < string; i++) {
+		matr[i] = (int*)malloc(column2 * sizeof(int));
 	}
-	int range = maxElement - minElement;
-	for (int i = 0; i < (sizeof(array) / sizeof(float)-1); i++) {
-		int index = static_cast <const int>(array[i] * numBuckets / range);
-		minBuckets[index] =
-	}*/
+
+	//Filling
+	for (int i = 0; i < string; i++) {
+		for (int j = 0; j < column2; j++) {
+			matr[i][j] = rand() % 7 + 1;
+			matr[i][j] = 1;
+		}
+	}
+
+	//Print matrix
+	for (int i = 0; i < string; i++) {
+		for (int j = 0; j < column2; j++) {
+			printf("%d ", matr[i][j]);
+		}
+		printf("\n");
+	}
+	*/
+	
+	int bucketLength = lengthArr + 1;
+	int bucketNum = rand() % maxElement + 101 + lengthArr;
+	int divider = ceil((double)((maxElement + 1) / bucketNum));
+	int currentBucketIndex;
+	float **bucketArr;
+	//float *bucketArr = (float*)malloc(bucketLength * bucketNum * sizeof(float));
+	bucketArr = (float**)malloc(bucketNum * sizeof(float*));
+	for (int i = 0; i < bucketNum; i++) {
+		bucketArr[i] = (float*)malloc(bucketLength * sizeof(float));
+	}
+	for (int i = 0; i < bucketNum; i++) {
+		bucketArr[i][0] = 0;
+	}
+
+	// sorting each bucket
+	for (int i = 0; i < lengthArr; i++) {
+		currentBucketIndex = floor(arrays[numArr][i] / divider);
+		bucketArr[currentBucketIndex][0]++;
+		bucketArr[currentBucketIndex][(int)bucketArr[currentBucketIndex][0]] = arrays[numArr][i];
+	}
+	for (int i = 0; i < bucketNum; i++) {
+		selectionSort(bucketArr, i, bucketArr[i][0]);
+	}
+
+	// reconstraction of source array
+	currentBucketIndex = 0;
+	int currentBucketReverseIndex = 0;
+	for (int i = 0; i < lengthArr; i++) {
+		if (currentBucketReverseIndex == bucketArr[currentBucketIndex][0]) {
+			currentBucketIndex++;
+			currentBucketReverseIndex = 0;
+		}
+		else {
+			arrays[numArr][i] = bucketArr[currentBucketIndex][currentBucketReverseIndex];
+			currentBucketReverseIndex++;
+		}
+	}
+
+	// print sorted array
+	
+	for (int i = 0; i < lengthArr; i++) {
+	cout << arrays[numArr][i] << endl;
+	}
 	
 }

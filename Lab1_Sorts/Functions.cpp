@@ -110,6 +110,8 @@ int runSelection(float **arrays, const int *lengthArr) {
 
 int runBucket(float **arrays, const int *lengthArr) {
 	int _startTime, _endTime, durationTime, numArr;
+	// bucket
+	int maxElement = 100;
 	char dateString[26];
 	char *_dateStr;
 	time_t currentDate;
@@ -151,7 +153,8 @@ int runBucket(float **arrays, const int *lengthArr) {
 	// Sorting
 	cout << "Sorting..." << endl << endl;
 	_startTime = clock();
-	//selectionSort(arrays, numArr, lengthArr[numArr]);
+	//bucket(arrays, numArr, lengthArr[numArr]);
+	bucketSort(arrays, numArr, lengthArr[numArr], maxElement);
 	_endTime = clock();
 	durationTime = _endTime - _startTime;
 
