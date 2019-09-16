@@ -83,8 +83,9 @@ void bucketSort(float **arrays, int numArr ,int lengthArr, int maxElement/*, int
 	}
 	*/
 	
-	int bucketLength = lengthArr + 1;
-	int bucketNum = rand() % maxElement + 101 + lengthArr;
+	int bucketLength = lengthArr + 5;
+	//int bucketNum = rand() % maxElement + 101 + lengthArr;
+	int bucketNum = lengthArr + lengthArr / 2;
 	int divider = ceil(float((maxElement + 1)) / float(bucketNum));
 	int currentBucketIndex;
 	float **bucketArr;
@@ -103,12 +104,41 @@ void bucketSort(float **arrays, int numArr ,int lengthArr, int maxElement/*, int
 		bucketArr[currentBucketIndex][0]++;
 		bucketArr[currentBucketIndex][(int)bucketArr[currentBucketIndex][0]] = arrays[numArr][i];
 	}
+	
+	//float temp;
+	//for (int i = 0; i < bucketNum; i++) {
+	//	//selectionSort(bucketArr, i, bucketArr[i][0]);
+	//	for (int k = 1; k < bucketArr[i][0] + 1; k++) {
+	//		for (int j = k + 1; j < bucketArr[i][0] + 1; j++) {
+	//			if (bucketArr[i][k] > bucketArr[i][j]) {
+	//				temp = bucketArr[i][k];
+	//				bucketArr[i][k] = bucketArr[i][j];
+	//				bucketArr[i][j] = temp;
+	//			}
+	//		}
+	//	}		
+	//}
+	
+	float temp;
 	for (int i = 0; i < bucketNum; i++) {
 		//selectionSort(bucketArr, i, bucketArr[i][0]);
-
-		
+		for (int k = 1; k <= bucketArr[i][0]; k++) {
+			for (int j = k + 1; j <= bucketArr[i][0]; j++) {
+				if (bucketArr[i][j] < bucketArr[i][j - 1]) {
+					temp = bucketArr[i][j];
+					bucketArr[i][j] = bucketArr[i][j - 1];
+					bucketArr[i][j - 1] = temp;
+				}
+			}
+		}
 	}
-
+	
+	/*for (int i = 0; i < bucketNum; i++) {
+		for (int j = 1; j <= bucketArr[i][0]; j++) {
+			cout << bucketArr[i][j] << endl;
+		}
+	}*/
+	
 	// reconstruction of source array
 	currentBucketIndex = 0;
 	int currentBucketReverseIndex = 0;
@@ -118,15 +148,28 @@ void bucketSort(float **arrays, int numArr ,int lengthArr, int maxElement/*, int
 			currentBucketReverseIndex = 0;
 		}
 		else {
-			arrays[numArr][i] = bucketArr[currentBucketIndex][currentBucketReverseIndex];
 			currentBucketReverseIndex++;
+			arrays[numArr][i] = bucketArr[currentBucketIndex][currentBucketReverseIndex];
+			
+		}
+	}
+	int g = 0;
+	for (int k = 0; k < bucketNum; k++) {
+		for (int i = 1; i <= bucketArr[k][0]; i++) {
+			arrays[numArr][g] = bucketArr[k][i];
+			g++;
 		}
 	}
 
-	// print sorted array
-	
-	for (int i = 0; i < lengthArr; i++) {
-	cout << arrays[numArr][i] << endl;
+	for (int i = 0; i < bucketNum; i++) {
+		free(bucketArr[i]);
 	}
-	
+	free(bucketArr);
+
+	// print sorted array
+	/*
+	for (int i = 0; i < lengthArr; i++) {
+		cout << arrays[numArr][i] << endl;
+	}
+	*/
 }
