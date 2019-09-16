@@ -183,14 +183,166 @@ int runBucket(float **arrays, const int *lengthArr) {
 }
 
 int runMerge(float **arrays, const int *lengthArr) {
+	int _startTime, _endTime, durationTime, numArr;
+	// bucket
+	int maxElement = 100;
+	char dateString[26];
+	char *_dateStr;
+	time_t currentDate;
+	time_t *p_currentDate = &currentDate;
 
+	selectArray();
 
+	cin >> numArr;
+	if (numArr == 0) {
+		ofstream fout("reports/mergeReport.txt");
+		if (!fout.is_open()) {
+			cout << "Unable to open file stream!\n";
+		}
+		fout.close();
+		system("cls");
+		cout << "Report cleared" << endl;
+		return 1;
+	}
+	numArr--;
+	system("cls");
+	ofstream fout("reports/mergeReport.txt", ios_base::app);
+
+	// print source-array
+	/*
+	for (int i = 0; i < 10; i++) {
+	cout  << arrays[0][i] << endl;
+	}
+	cout << endl;
+	*/
+
+	// print current date
+	time(p_currentDate);
+	_dateStr = ctime(p_currentDate);
+	for (int i = 0; i < 26; i++) {
+		dateString[i] = _dateStr[i];
+	}
+	//cout << dateString;
+
+	// Sorting
+	cout << "Sorting..." << endl << endl;
+	_startTime = clock();
+	mergeSort(arrays[numArr], 0, lengthArr[numArr] - 1);
+	_endTime = clock();
+	durationTime = _endTime - _startTime;
+
+	// screen result
+	cout << "Name: Bucket Sort" << endl;
+	cout << dateString;
+	cout << "Array: " << lengthArr[numArr] << " elements" << endl;
+	cout << "Duration Time: " << durationTime << " ms" << endl;
+	cout << endl;
+	// make report
+	fout << "Name: Bucket Sort" << endl;
+	fout << dateString;
+	fout << "Array: " << lengthArr[numArr] << " elements" << endl;
+	fout << "Duration Time: " << durationTime << " ms" << endl;
+	fout << endl;
+
+	//end of function-----------------------------------------------------------------
+	if (!fout.is_open()) {
+		cout << "Unable to open file stream!\n";
+	}
+	else {
+		cout << "All results are saved in txt-file \"mergeReport\"" << endl << endl;
+	}
+	fout.close();
 	return 3;
 }
 
 int runQuick(float **arrays, const int *lengthArr) {
+	int _startTime, _endTime, durationTime, numArr;
+	char dateString[26];
+	char *_dateStr;
+	time_t currentDate;
+	time_t *p_currentDate = &currentDate;
 
+	selectArray();
 
+	cin >> numArr;
+	if (numArr == 0) {
+		ofstream fout("reports/qsortRandomReport.txt");
+		if (!fout.is_open()) {
+			cout << "Unable to open file stream!\n";
+		}
+		fout.close();
+		system("cls");
+		cout << "Report cleared" << endl;
+		return 1;
+	}
+	numArr--;
+	system("cls");
+	ofstream fout("reports/qsortRandomReport.txt", ios_base::app);
+
+	// print source-array
+	/*
+	for (int i = 0; i < 10; i++) {
+	cout  << arrays[0][i] << endl;
+	}
+	cout << endl;
+	*/
+
+	// print current date
+	time(p_currentDate);
+	_dateStr = ctime(p_currentDate);
+	for (int i = 0; i < 26; i++) {
+		dateString[i] = _dateStr[i];
+	}
+	//cout << dateString;
+
+	int pivotChoice;
+	cout << "With which pivot: " << endl << "1. Random" << endl << "2. Worse" << endl;
+	cin >> pivotChoice;
+
+	// Sorting
+	cout << "Sorting..." << endl << endl;
+	_startTime = clock();
+	//selectionSort(arrays, numArr, lengthArr[numArr]);
+	if (pivotChoice == 1) {
+		quickSort(arrays[numArr], 0, lengthArr[numArr] - 1, randPivot);
+	}
+	else if (pivotChoice == 2) {
+		quickSort(arrays[numArr], 0, lengthArr[numArr] - 1, worsePivot);
+	}
+	_endTime = clock();
+	durationTime = _endTime - _startTime;
+
+	// screen result
+	if (pivotChoice == 1) {
+		cout << "Name: Quick Sort (Random)" << endl;
+	}
+	else if (pivotChoice == 2) {
+		cout << "Name: Quick Sort (Random)" << endl;
+	}
+	cout << dateString;
+	cout << "Array: " << lengthArr[numArr] << " elements" << endl;
+	cout << "Duration Time: " << durationTime << " ms" << endl;
+	cout << endl;
+	// make report
+	if (pivotChoice == 1) {
+		fout << "Name: Quick Sort (Random)" << endl;
+	}
+	else if (pivotChoice == 2) {
+		fout << "Name: Quick Sort (Random)" << endl;
+	}
+	fout << dateString;
+	fout << "Array: " << lengthArr[numArr] << " elements" << endl;
+	fout << "Duration Time: " << durationTime << " ms" << endl;
+	fout << endl;
+
+	//end of function-----------------------------------------------------------------
+	if (!fout.is_open()) {
+		cout << "Unable to open file stream!\n";
+	}
+	else {
+		cout << "All results are saved in txt-file \"qsortRandomReport\"" << endl << endl;
+	}
+	fout.close();
 	return 4;
 }
 

@@ -50,7 +50,7 @@ void selectionSort(float **arrays, int numArr, int lengthArr) {
 	*/
 }
 
-void bucketSort(float **arrays, int numArr ,int lengthArr, int maxElement/*, int minElement*/) {
+void bucketSort(float **arrays, int numArr ,int lengthArr, int maxElement/*, int minElement*/)  {
 	/*
 		bucketArr[i][0] - counter
 	*/
@@ -105,20 +105,6 @@ void bucketSort(float **arrays, int numArr ,int lengthArr, int maxElement/*, int
 		bucketArr[currentBucketIndex][(int)bucketArr[currentBucketIndex][0]] = arrays[numArr][i];
 	}
 	
-	//float temp;
-	//for (int i = 0; i < bucketNum; i++) {
-	//	//selectionSort(bucketArr, i, bucketArr[i][0]);
-	//	for (int k = 1; k < bucketArr[i][0] + 1; k++) {
-	//		for (int j = k + 1; j < bucketArr[i][0] + 1; j++) {
-	//			if (bucketArr[i][k] > bucketArr[i][j]) {
-	//				temp = bucketArr[i][k];
-	//				bucketArr[i][k] = bucketArr[i][j];
-	//				bucketArr[i][j] = temp;
-	//			}
-	//		}
-	//	}		
-	//}
-	
 	float temp;
 	for (int i = 0; i < bucketNum; i++) {
 		//selectionSort(bucketArr, i, bucketArr[i][0]);
@@ -133,11 +119,14 @@ void bucketSort(float **arrays, int numArr ,int lengthArr, int maxElement/*, int
 		}
 	}
 	
-	/*for (int i = 0; i < bucketNum; i++) {
+	// unmerged buckets
+	/*
+	for (int i = 0; i < bucketNum; i++) {
 		for (int j = 1; j <= bucketArr[i][0]; j++) {
 			cout << bucketArr[i][j] << endl;
 		}
-	}*/
+	}
+	*/
 	
 	// reconstruction of source array
 	currentBucketIndex = 0;
@@ -172,4 +161,114 @@ void bucketSort(float **arrays, int numArr ,int lengthArr, int maxElement/*, int
 		cout << arrays[numArr][i] << endl;
 	}
 	*/
+}
+
+float randPivot(float *arr, int left, int right)
+{
+	return  *(arr + left + rand() % (right - left));
+}
+
+float worsePivot(float *arr, int left, int right)
+{
+	float max = *(arr + right);
+	for (int i = left; i < right; i++)
+	{
+		if (*(arr + i) > max) max = *(arr + i);
+	}
+	return max;
+}
+
+void quickSort(float *arr, int left, int right, float getPivot(float*, int, int))
+{
+	int i = left, j = right;
+	float pivot = getPivot(arr, left, right);
+	while (i <= j) {
+		while (*(arr + i) < pivot)
+			i++;
+		while (*(arr + j) > pivot)
+			j--;
+		if (i <= j) {
+			swap(arr + i, arr + j);
+			i++;
+			j--;
+		}
+	};
+	if (left < j)
+		quickSort(arr, left, j, getPivot);
+	if (i < right)
+		quickSort(arr, i, right, getPivot);
+}
+
+void swap(float *a, float *b)
+{
+	float c = *a;
+	*a = *b;
+	*b = c;
+}
+
+void merge(float *arr, int l, int m, int r)
+{
+	int i, j, k;
+	int nl = m - l + 1;
+	int nr = r - m;
+
+	/* create temp arrays */
+	//int L[nl], R[nr];
+	float *leftArr = (float *)malloc(nl * sizeof(float));
+	float *rightArr = (float *)malloc(nr * sizeof(float));
+	/* Copy data to temp arrays L[] and R[] */
+	for (i = 0; i < nl; i++)
+		*(leftArr + i) = *(arr + l + i);
+	for (j = 0; j < nr; j++)
+		*(rightArr + j) = *(arr + m + 1 + j);
+
+	/* Merge the temp arrays back into arr[l..r]*/
+	i = 0; // Initial index of first subarray 
+	j = 0; // Initial index of second subarray 
+	k = l; // Initial index of merged subarray 
+	while (i < nl && j < nr)
+	{
+		if (*(leftArr + i) <= *(rightArr + j))
+		{
+			*(arr + k) = *(leftArr + i);
+			i++;
+		}
+		else
+		{
+			*(arr + k) = *(rightArr + j);
+			j++;
+		}
+		k++;
+	}
+
+	/* Copy the remaining elements of L[], if there
+	are any */
+	while (i < nl)
+	{
+		*(arr + k) = *(leftArr + i);
+		i++;
+		k++;
+	}
+
+	/* Copy the remaining elements of R[], if there
+	are any */
+	while (j < nr)
+	{
+		*(arr + k) = *(rightArr + j);
+		j++;
+		k++;
+	}
+	free(leftArr);
+	free(rightArr);
+}
+
+void mergeSort(float *arr, int l, int r)
+{
+	if (l < r)
+	{
+		int m = l + (r - l) / 2;
+		mergeSort(arr, l, m);
+		mergeSort(arr, m + 1, r);
+		merge(arr, l, m, r);
+	}
 }
