@@ -38,7 +38,7 @@ void randomizeArrays(float arr10[], float arr50[], float arr100[], float arr500[
 }
 
 int runSelection(float **arrays, const int *lengthArr) {
-	int _startTime, _endTime, durationTime, numArr;
+	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 1;
 	char dateString[26];
 	char *_dateStr;
 	time_t currentDate;
@@ -58,6 +58,8 @@ int runSelection(float **arrays, const int *lengthArr) {
 		return 1;
 	}
 	numArr--;
+	cout << "Enter number of sorts (cycle): ";
+	cin >> cycleNum;
 	system("cls");
 	ofstream fout("reports/selectionReport.txt", ios_base::app);
 
@@ -69,33 +71,38 @@ int runSelection(float **arrays, const int *lengthArr) {
 	cout << endl;
 	*/
 
-	// print current date
-	time(p_currentDate);
-	_dateStr = ctime(p_currentDate);
-	for (int i = 0; i < 26; i++) {
-		dateString[i] = _dateStr[i];
+	while (_cycle <= cycleNum) {
+		_cycle++;
+
+		// print current date
+		time(p_currentDate);
+		_dateStr = ctime(p_currentDate);
+		for (int i = 0; i < 26; i++) {
+			dateString[i] = _dateStr[i];
+		}
+		//cout << dateString;
+
+		// Sorting
+		cout << "Sorting..." << endl << endl;
+		_startTime = clock();
+		selectionSort(arrays, numArr, lengthArr[numArr]);
+		_endTime = clock();
+		durationTime = _endTime - _startTime;
+
+		// screen result
+		cout << "Name: Selection Sort" << endl;
+		cout << dateString;
+		cout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		cout << "Duration Time: " << durationTime << " ms" << endl;
+		cout << endl;
+		// make report
+		fout << "Name: Selection Sort" << endl;
+		fout << dateString;
+		fout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		fout << "Duration Time: " << durationTime << " ms" << endl;
+		fout << endl;
+
 	}
-	//cout << dateString;
-
-	// Sorting
-	cout << "Sorting..." << endl << endl;
-	_startTime = clock();
-	selectionSort(arrays, numArr, lengthArr[numArr]);
-	_endTime = clock();
-	durationTime = _endTime - _startTime;
-
-	// screen result
-	cout << "Name: Selection Sort" << endl;
-	cout << dateString;
-	cout << "Array: " << lengthArr[numArr] << " elements" << endl;
-	cout << "Duration Time: " << durationTime << " ms" << endl;
-	cout << endl;
-	// make report
-	fout << "Name: Selection Sort" << endl;
-	fout << dateString;
-	fout << "Array: " << lengthArr[numArr] << " elements" << endl;
-	fout << "Duration Time: " << durationTime << " ms" << endl;
-	fout << endl;
 
 	//end of function-----------------------------------------------------------------
 	if (!fout.is_open()) {
@@ -109,7 +116,7 @@ int runSelection(float **arrays, const int *lengthArr) {
 }
 
 int runBucket(float **arrays, const int *lengthArr) {
-	int _startTime, _endTime, durationTime, numArr;
+	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 1;
 	// bucket
 	int maxElement = 100;
 	char dateString[26];
@@ -149,27 +156,31 @@ int runBucket(float **arrays, const int *lengthArr) {
 		dateString[i] = _dateStr[i];
 	}
 	//cout << dateString;
+	while (_cycle <= cycleNum) {
+		_cycle++;
 
-	// Sorting
-	cout << "Sorting..." << endl << endl;
-	_startTime = clock();
-	//bucket(arrays, numArr, lengthArr[numArr]);
-	bucketSort(arrays, numArr, lengthArr[numArr], maxElement);
-	_endTime = clock();
-	durationTime = _endTime - _startTime;
+		// Sorting
+		cout << "Sorting..." << endl << endl;
+		_startTime = clock();
+		//bucket(arrays, numArr, lengthArr[numArr]);
+		bucketSort(arrays, numArr, lengthArr[numArr], maxElement);
+		_endTime = clock();
+		durationTime = _endTime - _startTime;
 
-	// screen result
-	cout << "Name: Bucket Sort" << endl;
-	cout << dateString;
-	cout << "Array: " << lengthArr[numArr] << " elements" << endl;
-	cout << "Duration Time: " << durationTime << " ms" << endl;
-	cout << endl;
-	// make report
-	fout << "Name: Bucket Sort" << endl;
-	fout << dateString;
-	fout << "Array: " << lengthArr[numArr] << " elements" << endl;
-	fout << "Duration Time: " << durationTime << " ms" << endl;
-	fout << endl;
+		// screen result
+		cout << "Name: Bucket Sort" << endl;
+		cout << dateString;
+		cout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		cout << "Duration Time: " << durationTime << " ms" << endl;
+		cout << endl;
+		// make report
+		fout << "Name: Bucket Sort" << endl;
+		fout << dateString;
+		fout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		fout << "Duration Time: " << durationTime << " ms" << endl;
+		fout << endl;
+
+	}
 
 	//end of function-----------------------------------------------------------------
 	if (!fout.is_open()) {
@@ -183,7 +194,7 @@ int runBucket(float **arrays, const int *lengthArr) {
 }
 
 int runMerge(float **arrays, const int *lengthArr) {
-	int _startTime, _endTime, durationTime, numArr;
+	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 1;
 	// bucket
 	int maxElement = 100;
 	char dateString[26];
@@ -216,33 +227,38 @@ int runMerge(float **arrays, const int *lengthArr) {
 	cout << endl;
 	*/
 
-	// print current date
-	time(p_currentDate);
-	_dateStr = ctime(p_currentDate);
-	for (int i = 0; i < 26; i++) {
-		dateString[i] = _dateStr[i];
+	while (_cycle <= cycleNum) {
+		_cycle++;
+
+		// print current date
+		time(p_currentDate);
+		_dateStr = ctime(p_currentDate);
+		for (int i = 0; i < 26; i++) {
+			dateString[i] = _dateStr[i];
+		}
+		//cout << dateString;
+
+		// Sorting
+		cout << "Sorting..." << endl << endl;
+		_startTime = clock();
+		mergeSort(arrays[numArr], 0, lengthArr[numArr] - 1);
+		_endTime = clock();
+		durationTime = _endTime - _startTime;
+
+		// screen result
+		cout << "Name: Bucket Sort" << endl;
+		cout << dateString;
+		cout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		cout << "Duration Time: " << durationTime << " ms" << endl;
+		cout << endl;
+		// make report
+		fout << "Name: Bucket Sort" << endl;
+		fout << dateString;
+		fout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		fout << "Duration Time: " << durationTime << " ms" << endl;
+		fout << endl;
+
 	}
-	//cout << dateString;
-
-	// Sorting
-	cout << "Sorting..." << endl << endl;
-	_startTime = clock();
-	mergeSort(arrays[numArr], 0, lengthArr[numArr] - 1);
-	_endTime = clock();
-	durationTime = _endTime - _startTime;
-
-	// screen result
-	cout << "Name: Bucket Sort" << endl;
-	cout << dateString;
-	cout << "Array: " << lengthArr[numArr] << " elements" << endl;
-	cout << "Duration Time: " << durationTime << " ms" << endl;
-	cout << endl;
-	// make report
-	fout << "Name: Bucket Sort" << endl;
-	fout << dateString;
-	fout << "Array: " << lengthArr[numArr] << " elements" << endl;
-	fout << "Duration Time: " << durationTime << " ms" << endl;
-	fout << endl;
 
 	//end of function-----------------------------------------------------------------
 	if (!fout.is_open()) {
@@ -256,7 +272,7 @@ int runMerge(float **arrays, const int *lengthArr) {
 }
 
 int runQuick(float **arrays, const int *lengthArr) {
-	int _startTime, _endTime, durationTime, numArr;
+	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 1;
 	char dateString[26];
 	char *_dateStr;
 	time_t currentDate;
@@ -299,41 +315,46 @@ int runQuick(float **arrays, const int *lengthArr) {
 	cout << "With which pivot: " << endl << "1. Random" << endl << "2. Worse" << endl;
 	cin >> pivotChoice;
 
-	// Sorting
-	cout << "Sorting..." << endl << endl;
-	_startTime = clock();
-	//selectionSort(arrays, numArr, lengthArr[numArr]);
-	if (pivotChoice == 1) {
-		quickSort(arrays[numArr], 0, lengthArr[numArr] - 1, randPivot);
-	}
-	else if (pivotChoice == 2) {
-		quickSort(arrays[numArr], 0, lengthArr[numArr] - 1, worsePivot);
-	}
-	_endTime = clock();
-	durationTime = _endTime - _startTime;
+	while (_cycle <= cycleNum) {
+		_cycle++;
 
-	// screen result
-	if (pivotChoice == 1) {
-		cout << "Name: Quick Sort (Random)" << endl;
+		// Sorting
+		cout << "Sorting..." << endl << endl;
+		_startTime = clock();
+		//selectionSort(arrays, numArr, lengthArr[numArr]);
+		if (pivotChoice == 1) {
+			quickSort(arrays[numArr], 0, lengthArr[numArr] - 1, randPivot);
+		}
+		else if (pivotChoice == 2) {
+			quickSort(arrays[numArr], 0, lengthArr[numArr] - 1, worsePivot);
+		}
+		_endTime = clock();
+		durationTime = _endTime - _startTime;
+
+		// screen result
+		if (pivotChoice == 1) {
+			cout << "Name: Quick Sort (Random)" << endl;
+		}
+		else if (pivotChoice == 2) {
+			cout << "Name: Quick Sort (Random)" << endl;
+		}
+		cout << dateString;
+		cout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		cout << "Duration Time: " << durationTime << " ms" << endl;
+		cout << endl;
+		// make report
+		if (pivotChoice == 1) {
+			fout << "Name: Quick Sort (Random)" << endl;
+		}
+		else if (pivotChoice == 2) {
+			fout << "Name: Quick Sort (Random)" << endl;
+		}
+		fout << dateString;
+		fout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		fout << "Duration Time: " << durationTime << " ms" << endl;
+		fout << endl;
+
 	}
-	else if (pivotChoice == 2) {
-		cout << "Name: Quick Sort (Random)" << endl;
-	}
-	cout << dateString;
-	cout << "Array: " << lengthArr[numArr] << " elements" << endl;
-	cout << "Duration Time: " << durationTime << " ms" << endl;
-	cout << endl;
-	// make report
-	if (pivotChoice == 1) {
-		fout << "Name: Quick Sort (Random)" << endl;
-	}
-	else if (pivotChoice == 2) {
-		fout << "Name: Quick Sort (Random)" << endl;
-	}
-	fout << dateString;
-	fout << "Array: " << lengthArr[numArr] << " elements" << endl;
-	fout << "Duration Time: " << durationTime << " ms" << endl;
-	fout << endl;
 
 	//end of function-----------------------------------------------------------------
 	if (!fout.is_open()) {

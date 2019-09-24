@@ -1,4 +1,4 @@
-﻿Сборка начата 16.09.2019 23:34:11.
+﻿Сборка начата 24.09.2019 22:50:26.
      1>Проект "D:\Programmes files 7\GitHub\Repositories\Lab1_Sorts\Lab1_Sorts\Lab1_Sorts.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
          D:\Programmes files 7\Visual Studio 2013\Program\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Functions.cpp
@@ -12,4 +12,4 @@
 
 Сборка успешно завершена.
 
-Затраченное время: 00:00:00.67
+Затраченное время: 00:00:00.56
