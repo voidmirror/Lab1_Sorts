@@ -38,7 +38,7 @@ void randomizeArrays(float arr10[], float arr50[], float arr100[], float arr500[
 }
 
 int runSelection(float **arrays, const int *lengthArr) {
-	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 1;
+	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 0;
 	char dateString[26];
 	char *_dateStr;
 	time_t currentDate;
@@ -71,7 +71,7 @@ int runSelection(float **arrays, const int *lengthArr) {
 	cout << endl;
 	*/
 
-	while (_cycle <= cycleNum) {
+	while (_cycle < cycleNum) {
 		_cycle++;
 
 		// print current date
@@ -93,14 +93,18 @@ int runSelection(float **arrays, const int *lengthArr) {
 		cout << "Name: Selection Sort" << endl;
 		cout << dateString;
 		cout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		cout << "Cycle: " << _cycle << endl;
 		cout << "Duration Time: " << durationTime << " ms" << endl;
 		cout << endl;
 		// make report
 		fout << "Name: Selection Sort" << endl;
 		fout << dateString;
 		fout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		fout << "Cycle: " << _cycle << endl;
 		fout << "Duration Time: " << durationTime << " ms" << endl;
 		fout << endl;
+
+		randomizeArrays(arrays[0], arrays[1], arrays[2], arrays[3], arrays[4], arrays[5], arrays[6], arrays[7], arrays[8]);
 
 	}
 
@@ -116,7 +120,7 @@ int runSelection(float **arrays, const int *lengthArr) {
 }
 
 int runBucket(float **arrays, const int *lengthArr) {
-	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 1;
+	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 0;
 	// bucket
 	int maxElement = 100;
 	char dateString[26];
@@ -138,6 +142,8 @@ int runBucket(float **arrays, const int *lengthArr) {
 		return 1;
 	}
 	numArr--;
+	cout << "Enter number of sorts (cycle): ";
+	cin >> cycleNum;
 	system("cls");
 	ofstream fout("reports/bucketReport.txt", ios_base::app);
 
@@ -156,7 +162,7 @@ int runBucket(float **arrays, const int *lengthArr) {
 		dateString[i] = _dateStr[i];
 	}
 	//cout << dateString;
-	while (_cycle <= cycleNum) {
+	while (_cycle < cycleNum) {
 		_cycle++;
 
 		// Sorting
@@ -180,6 +186,8 @@ int runBucket(float **arrays, const int *lengthArr) {
 		fout << "Duration Time: " << durationTime << " ms" << endl;
 		fout << endl;
 
+		randomizeArrays(arrays[0], arrays[1], arrays[2], arrays[3], arrays[4], arrays[5], arrays[6], arrays[7], arrays[8]);
+
 	}
 
 	//end of function-----------------------------------------------------------------
@@ -194,7 +202,7 @@ int runBucket(float **arrays, const int *lengthArr) {
 }
 
 int runMerge(float **arrays, const int *lengthArr) {
-	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 1;
+	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 0;
 	// bucket
 	int maxElement = 100;
 	char dateString[26];
@@ -216,6 +224,8 @@ int runMerge(float **arrays, const int *lengthArr) {
 		return 1;
 	}
 	numArr--;
+	cout << "Enter number of sorts (cycle): ";
+	cin >> cycleNum;
 	system("cls");
 	ofstream fout("reports/mergeReport.txt", ios_base::app);
 
@@ -227,7 +237,7 @@ int runMerge(float **arrays, const int *lengthArr) {
 	cout << endl;
 	*/
 
-	while (_cycle <= cycleNum) {
+	while (_cycle < cycleNum) {
 		_cycle++;
 
 		// print current date
@@ -246,17 +256,19 @@ int runMerge(float **arrays, const int *lengthArr) {
 		durationTime = _endTime - _startTime;
 
 		// screen result
-		cout << "Name: Bucket Sort" << endl;
+		cout << "Name: Merge Sort" << endl;
 		cout << dateString;
 		cout << "Array: " << lengthArr[numArr] << " elements" << endl;
 		cout << "Duration Time: " << durationTime << " ms" << endl;
 		cout << endl;
 		// make report
-		fout << "Name: Bucket Sort" << endl;
+		fout << "Name: Merge Sort" << endl;
 		fout << dateString;
 		fout << "Array: " << lengthArr[numArr] << " elements" << endl;
 		fout << "Duration Time: " << durationTime << " ms" << endl;
 		fout << endl;
+
+		randomizeArrays(arrays[0], arrays[1], arrays[2], arrays[3], arrays[4], arrays[5], arrays[6], arrays[7], arrays[8]);
 
 	}
 
@@ -272,7 +284,7 @@ int runMerge(float **arrays, const int *lengthArr) {
 }
 
 int runQuick(float **arrays, const int *lengthArr) {
-	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 1;
+	int _startTime, _endTime, durationTime, numArr, cycleNum, _cycle = 0;
 	char dateString[26];
 	char *_dateStr;
 	time_t currentDate;
@@ -292,6 +304,8 @@ int runQuick(float **arrays, const int *lengthArr) {
 		return 1;
 	}
 	numArr--;
+	cout << "Enter number of sorts (cycle): ";
+	cin >> cycleNum;
 	system("cls");
 	ofstream fout("reports/qsortRandomReport.txt", ios_base::app);
 
@@ -315,7 +329,7 @@ int runQuick(float **arrays, const int *lengthArr) {
 	cout << "With which pivot: " << endl << "1. Random" << endl << "2. Worse" << endl;
 	cin >> pivotChoice;
 
-	while (_cycle <= cycleNum) {
+	while (_cycle < cycleNum) {
 		_cycle++;
 
 		// Sorting
@@ -347,7 +361,7 @@ int runQuick(float **arrays, const int *lengthArr) {
 			fout << "Name: Quick Sort (Random)" << endl;
 		}
 		else if (pivotChoice == 2) {
-			fout << "Name: Quick Sort (Random)" << endl;
+			fout << "Name: Quick Sort (Worse)" << endl;
 		}
 		fout << dateString;
 		fout << "Array: " << lengthArr[numArr] << " elements" << endl;
