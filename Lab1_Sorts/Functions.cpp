@@ -177,12 +177,14 @@ int runBucket(float **arrays, const int *lengthArr) {
 		cout << "Name: Bucket Sort" << endl;
 		cout << dateString;
 		cout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		cout << "Cycle: " << _cycle << endl;
 		cout << "Duration Time: " << durationTime << " ms" << endl;
 		cout << endl;
 		// make report
 		fout << "Name: Bucket Sort" << endl;
 		fout << dateString;
 		fout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		fout << "Cycle: " << _cycle << endl;
 		fout << "Duration Time: " << durationTime << " ms" << endl;
 		fout << endl;
 
@@ -259,12 +261,14 @@ int runMerge(float **arrays, const int *lengthArr) {
 		cout << "Name: Merge Sort" << endl;
 		cout << dateString;
 		cout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		cout << "Cycle: " << _cycle << endl;
 		cout << "Duration Time: " << durationTime << " ms" << endl;
 		cout << endl;
 		// make report
 		fout << "Name: Merge Sort" << endl;
 		fout << dateString;
 		fout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		fout << "Cycle: " << _cycle << endl;
 		fout << "Duration Time: " << durationTime << " ms" << endl;
 		fout << endl;
 
@@ -354,6 +358,7 @@ int runQuick(float **arrays, const int *lengthArr) {
 		}
 		cout << dateString;
 		cout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		cout << "Cycle: " << _cycle << endl;
 		cout << "Duration Time: " << durationTime << " ms" << endl;
 		cout << endl;
 		// make report
@@ -365,6 +370,7 @@ int runQuick(float **arrays, const int *lengthArr) {
 		}
 		fout << dateString;
 		fout << "Array: " << lengthArr[numArr] << " elements" << endl;
+		fout << "Cycle: " << _cycle << endl;
 		fout << "Duration Time: " << durationTime << " ms" << endl;
 		fout << endl;
 
